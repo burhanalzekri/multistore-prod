@@ -14,7 +14,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ar" dir="rtl">
       <head>
         <Script id="theme-init" strategy="beforeInteractive">
-          {`try { if (localStorage.getItem("multistore-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch {}`}
+          {`try {
+            var t = localStorage.getItem("multistore-theme") || "light";
+            if (t !== "light") document.documentElement.setAttribute("data-theme", t);
+            if (t === "dark") document.documentElement.classList.add("dark");
+          } catch {}`}
         </Script>
         <link
           rel="preload"
@@ -31,7 +35,45 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           crossOrigin="anonymous"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script id="theme-manager" strategy="afterInteractive">
+          {`(function(){
+            var KEY = "multistore-theme";
+            var ICONS = { light: "☀️", dark: "🌙", rain: "🌧️", sunset: "🌅" };
+            function apply(t) {
+              document.documentElement.setAttribute("data-theme", t === "light" ? "" : t);
+              document.documentElement.classList.toggle("dark", t === "dark");
+              try { localStorage.setItem(KEY, t); } catch(e){}
+              document.querySelectorAll("[data-ms-theme]").forEach(function(b){
+                b.classList.toggle("active", b.getAttribute("data-ms-theme") === t);
+              });
+              var tog = document.getElementById("msThemeToggle");
+              if (tog) tog.textContent = ICONS[t] || "🎨";
+            }
+            window.msApplyTheme = apply;
+            var cur = "light";
+            try { cur = localStorage.getItem(KEY) || "light"; } catch(e){}
+            if (cur !== "light") document.documentElement.setAttribute("data-theme", cur);
+            if (cur === "dark") document.documentElement.classList.add("dark");
+            document.addEventListener("click", function(e){
+              var tog = e.target.closest("#msThemeToggle");
+              if (tog) { e.preventDefault(); var m = document.getElementById("msThemeMenu"); if (m) m.classList.toggle("open"); return; }
+              var opt = e.target.closest("[data-ms-theme]");
+              if (opt) { e.preventDefault(); apply(opt.getAttribute("data-ms-theme")); var m = document.getElementById("msThemeMenu"); if (m) setTimeout(function(){ m.classList.remove("open"); }, 200); return; }
+              if (!e.target.closest("#msThemeSwitcher")) { var m = document.getElementById("msThemeMenu"); if (m) m.classList.remove("open"); }
+            });
+            document.addEventListener("DOMContentLoaded", function(){
+              var tog = document.getElementById("msThemeToggle");
+              if (tog) tog.textContent = ICONS[cur] || "🎨";
+              document.querySelectorAll("[data-ms-theme]").forEach(function(b){
+                b.classList.toggle("active", b.getAttribute("data-ms-theme") === cur);
+              });
+            });
+          })();`}
+        </Script>
+        <ThemeSwitcher />
+      </body>
     </html>
   );
 }

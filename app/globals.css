@@ -36,24 +36,72 @@
 
 :root {
   color-scheme: light;
-  --green: #7c3aed;
-  --green-dark: #6d28d9;
-  --green-deep: #5b21b6;
-  --lime: #38bdf8;
-  --navy: #374151;
-  --navy-2: #4b5563;
-  --bg: #ffffff;
+  /* Green Emerald — الهوية الأساسية */
+  --green: #10b981;
+  --green-dark: #059669;
+  --green-deep: #047857;
+  --green-light: #34d399;
+  --green-50: #ecfdf5;
+  --green-100: #d1fae5;
+  /* Lime — لمسات فسفورية */
+  --lime: #b7e84a;
+  /* Navy — خلفيات داكنة فاخرة */
+  --navy: #0a1929;
+  --navy-2: #0f2942;
+  --navy-3: #1a3a52;
+  /* Neutrals */
+  --bg: #f8fafc;
   --surface: #ffffff;
-  --text: #374151;
-  --muted: #6b7280;
+  --text: #0a1929;
+  --muted: #64748b;
+  --border: #e5e7eb;
 }
 
-.dark {
+/* ═══ 🌙 الوضع الليلي ═══ */
+html[data-theme="dark"],
+html.dark {
   color-scheme: dark;
-  --bg: #081521;
-  --surface: #0f2942;
-  --text: #f8fafc;
-  --muted: #a7b4c2;
+  --bg: #071310;
+  --surface: #0c1f1a;
+  --text: #e8f5f0;
+  --muted: #8ba69e;
+  --border: rgba(183,232,74,.15);
+  --navy: #02100c;
+  --navy-2: #051a14;
+}
+
+/* ═══ 🌧️ وضع المطر ═══ */
+html[data-theme="rain"] {
+  color-scheme: light;
+  --green: #2c7fb8;
+  --green-dark: #1c5c8c;
+  --green-deep: #164a70;
+  --green-light: #6fb3d9;
+  --lime: #6fb3d9;
+  --navy: #0a1e2e;
+  --navy-2: #0f2942;
+  --bg: #eef4f8;
+  --surface: #ffffff;
+  --text: #0a1e2e;
+  --muted: #4d6b83;
+  --border: rgba(44,127,184,.15);
+}
+
+/* ═══ 🌅 وضع الغروب ═══ */
+html[data-theme="sunset"] {
+  color-scheme: light;
+  --green: #e87a3f;
+  --green-dark: #c45a1e;
+  --green-deep: #9a3412;
+  --green-light: #ffb347;
+  --lime: #ffb347;
+  --navy: #2d1810;
+  --navy-2: #4a2517;
+  --bg: #fff9f5;
+  --surface: #ffffff;
+  --text: #2d1810;
+  --muted: #8b6952;
+  --border: rgba(232,122,63,.15);
 }
 
 *,
@@ -93,4 +141,114 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ═══════════════════════════════════════════
+   THEME SWITCHER
+   ═══════════════════════════════════════════ */
+.ms-theme-switcher {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+.ms-theme-toggle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: #fff;
+  border: 3px solid rgba(255,255,255,.9);
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.4) inset,
+    0 -2px 4px rgba(5,150,105,.3) inset,
+    0 10px 30px rgba(16,185,129,.4),
+    0 0 0 5px rgba(16,185,129,.15);
+  display: grid;
+  place-items: center;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+  font-family: inherit;
+}
+.ms-theme-toggle:hover {
+  transform: scale(1.1) rotate(-8deg);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.5) inset,
+    0 -2px 4px rgba(5,150,105,.3) inset,
+    0 15px 40px rgba(16,185,129,.5),
+    0 0 0 8px rgba(16,185,129,.2);
+}
+.ms-theme-menu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+  min-width: 160px;
+}
+.ms-theme-menu.open { display: flex; }
+.ms-theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 11px;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: right;
+  transition: all .2s;
+  width: 100%;
+}
+.ms-theme-option:hover {
+  background: var(--green-50);
+  transform: translateX(-4px);
+}
+.ms-theme-option.active {
+  background: var(--green-50);
+  color: var(--green-deep);
+}
+.ms-theme-option-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+/* 3D Shadows للبطاقات */
+.lp-card-3d {
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+}
+.lp-card-3d:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 24px 48px -16px rgba(16,185,129,.2),
+    0 8px 20px rgba(16,185,129,.08);
+}
+
+/* زر رئيسي محسّن */
+.lp-button {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.3) inset,
+    0 -2px 4px rgba(5,150,105,.3) inset,
+    0 10px 26px rgba(16,185,129,.35);
+}
+.lp-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.4) inset,
+    0 -2px 4px rgba(5,150,105,.3) inset,
+    0 16px 36px rgba(16,185,129,.45);
 }
