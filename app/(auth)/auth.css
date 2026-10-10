@@ -1,0 +1,49 @@
+.auth-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 18px;
+  background: radial-gradient(circle at 12% 10%, rgba(124,58,237,.09), transparent 30%), radial-gradient(circle at 88% 90%, rgba(56,189,248,.10), transparent 32%), #fff;
+}
+.auth-card {
+  width: min(100%, 460px);
+  padding: clamp(24px, 5vw, 42px);
+  border: 1px solid rgba(124,58,237,.12);
+  border-radius: 24px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 24px 70px rgba(55,65,81,.10), 0 5px 18px rgba(124,58,237,.06);
+}
+.auth-brand { display: inline-flex; align-items: center; gap: 9px; color: #374151; font-weight: 800; text-decoration: none; }
+.auth-brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 10px; background: linear-gradient(135deg,#7c3aed,#38bdf8); color: #fff; }
+.auth-card h1 { margin: 25px 0 8px; color: #202938; font-size: clamp(25px,6vw,32px); line-height: 1.3; }
+.auth-intro { margin: 0 0 24px; color: #667085; font-size: 14px; line-height: 1.8; }
+.auth-form { display: grid; gap: 16px; }
+.auth-field { display: grid; gap: 7px; color: #374151; font-size: 13px; font-weight: 700; }
+.auth-field input { min-height: 48px; width: 100%; padding: 0 13px; border: 1px solid #e4e7ec; border-radius: 12px; background: #fff; color: #1f2937; font: inherit; font-weight: 400; outline: none; }
+.auth-field input:focus { border-color: #8b5cf6; box-shadow: 0 0 0 4px rgba(124,58,237,.11); }
+.auth-submit { min-height: 49px; margin-top: 4px; border: 0; border-radius: 13px; background: linear-gradient(110deg,#7c3aed,#6d5ce8 54%,#38bdf8); color: #fff; cursor: pointer; font: inherit; font-weight: 800; box-shadow: 0 9px 22px rgba(124,58,237,.20); }
+.auth-submit:hover { filter: brightness(1.04); transform: translateY(-1px); }
+.auth-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 22px; color: #667085; font-size: 13px; }
+.auth-links a, .auth-back { color: #6d28d9; font-weight: 700; text-decoration: none; }
+.auth-links a:hover, .auth-back:hover { text-decoration: underline; }
+.auth-notice { margin: 0 0 18px; padding: 12px 14px; border: 1px solid rgba(124,58,237,.16); border-radius: 12px; background: #faf7ff; color: #55318d; font-size: 13px; line-height: 1.7; }
+.auth-notice.error { border-color: rgba(220,38,38,.15); background: #fff7f7; color: #9b1c1c; }
+.auth-notice.success { border-color: rgba(16,185,129,.18); background: #f0fdf8; color: #166534; }
+.auth-account-meta { display: grid; gap: 10px; margin: 20px 0; padding: 16px; border-radius: 14px; background: #f8f7fc; color: #4b5563; font-size: 14px; }
+.auth-account-meta b { color: #303846; }
+.auth-account-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+.auth-account-actions a { color: #6d28d9; font-size: 13px; font-weight: 700; text-decoration: none; }
+.auth-account-actions .auth-submit { flex: 1; min-width: 150px; padding: 0 16px; }
+@media (max-width: 480px) { .auth-shell { padding: 18px 14px; } .auth-card { border-radius: 20px; } }
+@media (prefers-reduced-motion: reduce) { .auth-submit { transition: none; } }
+html[data-theme="dark"] .auth-shell { background: radial-gradient(circle at 12% 10%, rgba(124,58,237,.14), transparent 30%), radial-gradient(circle at 88% 90%, rgba(56,189,248,.12), transparent 32%), #0b1020; }
+html[data-theme="dark"] .auth-card { border-color: rgba(167,139,250,.18); background: #11182b; box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+html[data-theme="dark"] .auth-brand, html[data-theme="dark"] .auth-card h1 { color: #f1f5f9; }
+html[data-theme="dark"] .auth-intro, html[data-theme="dark"] .auth-links { color: #b7c2d4; }
+html[data-theme="dark"] .auth-field { color: #dbe3f0; }
+html[data-theme="dark"] .auth-field input { border-color: #303a53; background: #0d1326; color: #f1f5f9; }
+html[data-theme="dark"] .auth-notice { border-color: rgba(167,139,250,.2); background: #1d1930; color: #e9ddff; }
+html[data-theme="dark"] .auth-notice.error { background: #2a171e; color: #fecaca; }
+html[data-theme="dark"] .auth-notice.success { background: #10251f; color: #bbf7d0; }
+html[data-theme="dark"] .auth-account-meta { background: #0d1326; color: #b7c2d4; }
+html[data-theme="dark"] .auth-account-meta b { color: #f1f5f9; }

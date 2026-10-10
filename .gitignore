@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+coverage/
+.turbo/
+.lighthouseci/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+!.env.example
+.vercel/
+.next-analyze/
+playwright-report/
+test-results/
+/var/uploads/
