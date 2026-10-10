@@ -36,28 +36,84 @@
 
 :root {
   color-scheme: light;
-  /* Green Emerald — الهوية الأساسية */
+  /* ═══ Neon Green — الأساسي ═══ */
   --green: #10b981;
   --green-dark: #059669;
   --green-deep: #047857;
   --green-light: #34d399;
   --green-50: #ecfdf5;
   --green-100: #d1fae5;
-  /* Lime — لمسات فسفورية */
-  --lime: #b7e84a;
-  /* Navy — خلفيات داكنة فاخرة */
-  --navy: #0a1929;
-  --navy-2: #0f2942;
-  --navy-3: #1a3a52;
-  /* Neutrals */
-  --bg: #f8fafc;
+  /* ═══ Neon — لمسات عصرية ═══ */
+  --lime: #B9FF66;
+  --lime-hover: #A3E635;
+  --neon: #B9FF66;
+  --neon-soft: rgba(185,255,102,.15);
+  /* ═══ Dark Green-Black — خلفيات فاخرة ═══ */
+  --navy: #0A1A12;
+  --navy-2: #11221A;
+  --navy-3: #1a2d24;
+  /* ═══ Neutrals ═══ */
+  --bg: #F9FAFB;
   --surface: #ffffff;
-  --text: #0a1929;
-  --muted: #64748b;
-  --border: #e5e7eb;
+  --text: #1F2937;
+  --text-strong: #0F172A;
+  --muted: #6B7280;
+  --muted-2: #9CA3AF;
+  --border: #E5E7EB;
+  --border-light: #F3F4F6;
 }
 
 /* ═══ 🌙 الوضع الليلي ═══ */
+html[data-theme="dark"],
+html.dark {
+  color-scheme: dark;
+  --bg: #0A1A12;
+  --surface: #11221A;
+  --text: #F8FAFC;
+  --text-strong: #FFFFFF;
+  --muted: #9CA3AF;
+  --muted-2: #6B7280;
+  --border: rgba(185,255,102,.12);
+  --border-light: rgba(185,255,102,.06);
+}
+
+/* ═══ 🌧️ وضع المطر ═══ */
+html[data-theme="rain"] {
+  color-scheme: light;
+  --green: #2c7fb8;
+  --green-dark: #1c5c8c;
+  --green-deep: #164a70;
+  --green-light: #6fb3d9;
+  --lime: #6fb3d9;
+  --neon: #6fb3d9;
+  --neon-soft: rgba(111,179,217,.15);
+  --navy: #0a1e2e;
+  --navy-2: #0f2942;
+  --bg: #eef4f8;
+  --surface: #ffffff;
+  --text: #0a1e2e;
+  --muted: #4d6b83;
+  --border: rgba(44,127,184,.15);
+}
+
+/* ═══ 🌅 وضع الغروب ═══ */
+html[data-theme="sunset"] {
+  color-scheme: light;
+  --green: #e87a3f;
+  --green-dark: #c45a1e;
+  --green-deep: #9a3412;
+  --green-light: #ffb347;
+  --lime: #ffb347;
+  --neon: #ffb347;
+  --neon-soft: rgba(255,179,71,.18);
+  --navy: #2d1810;
+  --navy-2: #4a2517;
+  --bg: #fff9f5;
+  --surface: #ffffff;
+  --text: #2d1810;
+  --muted: #8b6952;
+  --border: rgba(232,122,63,.15);
+}/* ═══ 🌙 الوضع الليلي ═══ */
 html[data-theme="dark"],
 html.dark {
   color-scheme: dark;
@@ -251,4 +307,202 @@ body {
     0 1px 0 rgba(255,255,255,.4) inset,
     0 -2px 4px rgba(5,150,105,.3) inset,
     0 16px 36px rgba(16,185,129,.45);
+}
+
+/* ═══════════════════════════════════════════
+   🎨 Neon Green Style — Enhancement Layer
+   ═══════════════════════════════════════════ */
+
+/* الأزرار — Pill shape + Neon */
+.lp-button {
+  background: var(--neon) !important;
+  color: #0A1A12 !important;
+  border-radius: 999px !important;
+  padding: 0 24px !important;
+  font-weight: 800 !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.5) inset,
+    0 -2px 4px rgba(0,0,0,.1) inset,
+    0 8px 24px rgba(185,255,102,.35) !important;
+  transition: all .25s cubic-bezier(.4,0,.2,1) !important;
+}
+.lp-button:hover {
+  background: var(--lime-hover) !important;
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.5) inset,
+    0 -2px 4px rgba(0,0,0,.1) inset,
+    0 14px 32px rgba(185,255,102,.5) !important;
+}
+
+/* زر ثانوي — Outline */
+.lp-outline-button {
+  background: transparent !important;
+  color: var(--text-strong) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 999px !important;
+}
+.lp-outline-button:hover {
+  border-color: var(--neon) !important;
+  background: var(--neon-soft) !important;
+  color: var(--green-deep) !important;
+}
+
+/* Hero — خلفية داكنة مخضرة */
+.lp-hero {
+  background:
+    radial-gradient(ellipse at 18% 6%, rgba(185,255,102,.14), transparent 35%),
+    radial-gradient(ellipse at 78% 77%, rgba(185,255,102,.08), transparent 38%),
+    var(--navy) !important;
+}
+
+/* الشارات */
+.lp-hero-badge {
+  background: rgba(185,255,102,.08) !important;
+  border-color: rgba(185,255,102,.25) !important;
+  color: #B9FF66 !important;
+}
+
+/* الأزرار الثانوية في Hero */
+.lp-hero-actions .lp-outline-button {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+.lp-hero-actions .lp-outline-button:hover {
+  border-color: var(--neon) !important;
+  background: rgba(185,255,102,.1) !important;
+  color: #B9FF66 !important;
+}
+
+/* البطاقات */
+.lp-card-3d,
+.lp-price-card,
+.lp-feature-card,
+[class*="-card"] {
+  border-radius: 24px !important;
+}
+.lp-card-3d:hover {
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 32px 64px -24px rgba(185,255,102,.25),
+    0 12px 24px rgba(185,255,102,.1) !important;
+}
+
+/* CTA Banner — rounded-[32px] */
+.lp-cta,
+.lp-cta-banner,
+[class*="cta-banner"] {
+  border-radius: 32px !important;
+}
+
+/* Shadows — 2xl للماكيتات */
+.lp-dashboard-window {
+  box-shadow:
+    0 40px 100px rgba(10,26,18,.5),
+    0 20px 40px rgba(185,255,102,.08) !important;
+}
+
+/* Spacing أكبر */
+.lp-section {
+  padding-block: 96px !important;
+}
+@media (max-width: 768px) {
+  .lp-section {
+    padding-block: 64px !important;
+  }
+}
+
+/* الهيدر */
+.lp-header {
+  background: rgba(249,250,251,.92) !important;
+  backdrop-filter: blur(12px) !important;
+}
+html[data-theme="dark"] .lp-header,
+html.dark .lp-header {
+  background: rgba(10,26,18,.92) !important;
+  border-color: rgba(185,255,102,.08) !important;
+}
+
+/* روابط التنقل */
+.lp-nav-links a:hover {
+  color: var(--green-deep) !important;
+}
+
+/* ═══ Theme Switcher ═══ */
+.ms-theme-switcher {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+}
+.ms-theme-toggle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--neon);
+  color: #0A1A12;
+  border: 3px solid rgba(255,255,255,.9);
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.5) inset,
+    0 -2px 4px rgba(0,0,0,.1) inset,
+    0 10px 30px rgba(185,255,102,.4),
+    0 0 0 5px rgba(185,255,102,.15);
+  display: grid;
+  place-items: center;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+}
+.ms-theme-toggle:hover {
+  transform: scale(1.1) rotate(-8deg);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.6) inset,
+    0 -2px 4px rgba(0,0,0,.1) inset,
+    0 15px 40px rgba(185,255,102,.6),
+    0 0 0 8px rgba(185,255,102,.2);
+}
+.ms-theme-menu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0 20px 50px rgba(10,26,18,.25);
+  min-width: 170px;
+}
+.ms-theme-menu.open { display: flex; }
+.ms-theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  color: var(--text-strong);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: right;
+  transition: all .2s;
+  width: 100%;
+}
+.ms-theme-option:hover {
+  background: var(--green-50);
+  transform: translateX(-4px);
+}
+.ms-theme-option.active {
+  background: var(--neon-soft);
+  color: var(--green-deep);
+}
+.ms-theme-option-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
 }
